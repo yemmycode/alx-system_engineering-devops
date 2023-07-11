@@ -1,0 +1,2 @@
+#!/bin/bash
+cat /etc/passwd | cut -d ':' -f 1,6 | sort | awk -F ':' '{ printf "User: %-10s Home Directory: %s\n", $1, $2 }'
