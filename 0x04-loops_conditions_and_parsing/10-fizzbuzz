@@ -1,14 +1,18 @@
 #!/usr/bin/env bash
+# This script displays numbers from 1 to 100 along with Fizz, Buzz, or FizzBuzz as per the conditions.
 
-for ((i = 1; i <= 100; i++))
+count=1
+
+while [ $count -le 100 ]
 do
-    if (( i % 3 == 0 )) && (( i % 5 == 0 )); then
+    if (( count % 3 == 0 && count % 5 == 0 )); then
         echo "FizzBuzz"
-    elif (( i % 3 == 0 )); then
+    elif (( count % 3 == 0 )); then
         echo "Fizz"
-    elif (( i % 5 == 0 )); then
+    elif (( count % 5 == 0 )); then
         echo "Buzz"
     else
-        echo "$i"
+        echo "$count"
     fi
+    (( count++ ))
 done
