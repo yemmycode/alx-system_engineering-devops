@@ -1,15 +1,17 @@
 #!/usr/bin/env bash
 
-current_hour=0
+# The following script illustrates a display of time for 
+12 hours and 59 minutes.
 
-while [ $current_hour -le 12 ]
+h=0
+while [ $h -le 12 ]
 do
-  echo "Hour: $current_hour"
-  current_minute=1
-  while [ $current_minute -le 59 ]
-  do
-    echo "$current_minute"
-    (( current_minute++ ))
-  done
-  (( current_hour++ ))
+    echo "Hour: $h"
+    min=1
+    while [ $min -le 59 ]
+    do
+        echo "$min"
+        ((min++))
+    done
+    ((h++))
 done
