@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# This script narrates a tale based on the entries found in the `/etc/passwd` file
+
+input_file="/etc/passwd"
+field1=""
+field2=""
+field3=""
+while IFS= read -r line
+do
+    field1="$(echo "$line" | cut -d":" -f1)"
+    field2="$(echo "$line" | cut -d":" -f4)"
+    field3="$(echo "$line" | cut -d":" -f6)"
+    field4="$(echo "$line" | cut -d":" -f7)"
+    field5="$(echo "$line" | cut -d":" -f3)"
+    field6="$(echo "$line" | cut -d":" -f2)"
+    field7="$(echo "$line" | cut -d":" -f5)"
+    echo "The user ${field1} belongs to the ${field2} group, resides in ${field3}, and drives ${field4}. The password for ${field5} is secured with the code ${field6}. For more information about the user, visit: ${field7}"
+done < "$input_file"
