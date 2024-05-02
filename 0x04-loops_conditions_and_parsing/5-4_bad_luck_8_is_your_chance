@@ -1,14 +1,17 @@
 #!/usr/bin/env bash
+# A script that displays different messages based on loop 
+iteration using a while loop and if-elif-else statements
 
-i=1
+count=1
 
-while [ $i -le 10 ]; do
-    if [ $i -eq 4 ]; then
+while [ $count -le 10 ]
+do
+    if [ $count -eq 4 ]; then
         echo "bad luck"
-    elif [ $i -eq 8 ]; then
+    elif [ $count -eq 8 ]; then
         echo "good luck"
     else
         echo "Best School"
     fi
-    ((i++))
+    ((count++))
 done
