@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# The following script parses Apache log files provided in a list format.
+# It organizes visitors by IP and HTTP status code, presenting the count, IP, and HTTP status code for each log entry, sorted in descending order.
+
+logfile="apache-access.log"
+awk -F' ' '{ print $1, $9 }' "$logfile" | sort | uniq -c | sort -nr
