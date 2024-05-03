@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-# This is a Bash script that displays 'To infinity and beyond' indefinitely.
+# This Bash script continuously displays 'To infinity and beyond'.
 
-for (( ; ; ))
+while :
 do
     echo "To infinity and beyond"
     sleep 2
