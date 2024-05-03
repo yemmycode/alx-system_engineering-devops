@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# This Bash script kills the process named "7-highlander" if it's running.
+
+# Check if the process "7-highlander" is running
+if pgrep -x "7-highlander" > /dev/null; then
+    # Kill the process
+    pkill -x "7-highlander"
+    echo "Killed"
+else
+    echo "Process '7-highlander' is not running."
+fi
