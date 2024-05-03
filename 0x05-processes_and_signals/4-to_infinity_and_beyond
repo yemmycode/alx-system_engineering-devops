@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# This is a Bash script that displays 'To infinity and beyond' indefinitely.
+
+for (( ; ; ))
+do
+    echo "To infinity and beyond"
+    sleep 2
+done
