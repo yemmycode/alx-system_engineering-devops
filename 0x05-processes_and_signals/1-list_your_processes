@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+echo "List of currently running processes (including hierarchy):"
+echo "--------------------------------------------------------"
+ps aux --forest
