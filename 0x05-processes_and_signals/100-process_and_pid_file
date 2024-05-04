@@ -1,32 +1,27 @@
 #!/usr/bin/env bash
 
-# Function to handle SIGTERM signal
-handle_sigterm() {
-    echo "I hate the kill command"
-}
+# Process and PID file
+file="/var/run/myscript.pid"
 
-# Function to handle SIGINT signal
-handle_sigint() {
-    echo "Y U no love me?!"
-}
+# Create the PID file if it doesn't exist
+if [ ! -e "$file" ]; then
+  touch "$file"
+fi
 
-# Function to handle SIGQUIT signal
-handle_sigquit() {
-    echo "Deleting PID file and terminating script..."
-    rm -f "/var/run/myscript.pid"
-    exit 0
-}
+# Start a background process to sleep for 2 seconds
+sleep 2 &
 
-# Trap signals and call appropriate handler functions
-trap 'handle_sigterm' SIGTERM
-trap 'handle_sigint' SIGINT
-trap 'handle_sigquit' SIGQUIT
+# Write the PID of the background process to the PID file
+echo "$!" > "$file"
 
-# Create PID file
-echo $$ > /var/run/myscript.pid
+# Handle SIGTERM and SIGQUIT signals
+trap 'echo "I hate the kill command"; rm "$file"; exit' SIGTERM SIGQUIT
 
-# Display messages indefinitely
+# Handle SIGINT signal
+trap 'echo "Y U no love me?!"' SIGINT
+
+# Print message indefinitely
 while true; do
-    echo "To infinity and beyond"
-    sleep 2
+  echo "To infinity and beyond"
+  sleep 2
 done
