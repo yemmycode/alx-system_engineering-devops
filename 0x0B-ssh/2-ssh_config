@@ -1,0 +1,8 @@
+# SSH client configuration for passwordless server connection setup.
+Host *
+    SendEnv LANG LC_*
+    HashKnownHosts yes
+    GSSAPIAuthentication yes
+    GSSAPIDelegateCredentials no
+    PasswordAuthentication no
+    IdentityFile ~/.ssh/school
