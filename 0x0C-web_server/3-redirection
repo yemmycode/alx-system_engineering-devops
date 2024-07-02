@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Script to configure a new Ubuntu machine according to specified requirements
+
+# Update package lists
+sudo apt-get update
+
+# Install Nginx
+sudo apt-get install -y nginx
+
+# Create a basic HTML file
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+# Add redirect rule to Nginx configuration
+replacement="server_name _;\n\trewrite ^/redirect_me https://www.blog.ehoneahobed.com permanent;"
+sudo sed -i "s/server_name _;/$replacement/" /etc/nginx/sites-enabled/default
+
+# Restart Nginx to apply changes
+sudo service nginx restart
