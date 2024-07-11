@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Fix nginx configuration by linking and starting the service
-ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
-systemctl start nginx
-rm -f /run/nginx.pid
+# Configure nginx to listen on port 80 and start the service
+ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+sudo systemctl start nginx
+sudo kill "$(pgrep nginx | head -n 1)"
