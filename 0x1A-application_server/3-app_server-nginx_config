@@ -1,28 +1,37 @@
 server {
+        # Listen on port 80 for incoming connections, set as the default server
         listen 80 default_server;
         listen [::]:80 default_server;
 
+        # Set server name to a wildcard and perform a permanent redirect
         server_name _;
         rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
+
+        # Define custom 404 error page and set default index files
         error_page 404 /custom_404.html;
         index index.html index.htm;
-        error_page 404 /404.html;
+        
+        # Add a custom header with the hostname of the server
         add_header X-Served-By $hostname;
 
+        # Define the root location and try to serve files or return a 404 error
         location / {
                 root /var/www/html/;
                 try_files $uri $uri/ =404;
         }
 
+        # Proxy requests to the /airbnb-onepage/ path to the application running on port 5001
         location /airbnb-onepage/ {
-                proxy_pass http://127.0.0.1:5001;
+                proxy_pass http://localhost:5001;
         }
 
+        # Proxy requests to the /airbnb-dynamic/number_odd_or_even/ path and include proxy parameters
         location /airbnb-dynamic/number_odd_or_even/ {
                 include proxy_params;
-                proxy_pass http://127.0.0.1:5001/number_odd_or_even/;
+                proxy_pass http://0.0.0.0:5001/number_odd_or_even/;
         }
 
+        # Serve a custom 404 error page from the /var/www/error/ directory
         location = /404.html {
                 root /var/www/error/;
                 internal;
